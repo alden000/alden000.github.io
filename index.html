@@ -3,96 +3,40 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Apps · wwweeeiii</title>
-<meta name="description" content="Web apps published from github.com/alden000" />
+<title>wwweeeiii</title>
+<meta name="robots" content="noindex" />
 <meta name="theme-color" content="#041113" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Sora:wght@700;800&display=swap" />
 <style>
   :root {
     color-scheme: dark;
-    --canvas: #041113; --glass: rgba(9, 27, 30, 0.72); --hairline: rgba(255, 255, 255, 0.08); --edge: rgba(200, 255, 245, 0.16);
-    --text: #eef6f4; --text-2: #9cb9b6; --text-3: #5e7d7a;
-    --c1: #f2685a; --c2: #ff8a6b; --c3: #ffbb8f; --ink: #2a0f0b; --aqua: #2dd4bf;
+    --canvas: #041113; --text: #eef6f4; --text-2: #9cb9b6;
     --g1: rgba(13, 148, 136, 0.45); --g2: rgba(14, 94, 112, 0.55); --g3: rgba(242, 104, 90, 0.2);
   }
   @media (prefers-color-scheme: light) {
     :root {
       color-scheme: light;
-      --canvas: #f1f7f6; --glass: rgba(255, 255, 255, 0.8); --hairline: rgba(6, 32, 35, 0.09); --edge: rgba(255, 255, 255, 0.9);
-      --text: #072226; --text-2: #3f5e5d; --text-3: #86a19f; --aqua: #0f766e;
+      --canvas: #f1f7f6; --text: #072226; --text-2: #3f5e5d;
       --g1: rgba(153, 227, 216, 0.6); --g2: rgba(178, 220, 232, 0.6); --g3: rgba(255, 205, 186, 0.6);
     }
   }
-  * { box-sizing: border-box; }
-  body { margin: 0; min-height: 100vh; background: var(--canvas); color: var(--text); font: 15px/1.5 'Plus Jakarta Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-  .backdrop { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; text-align: center; padding: 16px;
+    background: var(--canvas); color: var(--text); font: 15px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .backdrop { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
   .backdrop i { position: absolute; border-radius: 50%; }
   .backdrop i:nth-child(1) { width: 110vmax; height: 110vmax; left: -45vmax; top: -70vmax; background: radial-gradient(closest-side, var(--g1), transparent); animation: orbit 23s linear infinite; }
   .backdrop i:nth-child(2) { width: 95vmax; height: 95vmax; right: -45vmax; top: -60vmax; background: radial-gradient(closest-side, var(--g2), transparent); animation: orbit 31s linear infinite; }
   .backdrop i:nth-child(3) { width: 75vmax; height: 75vmax; left: 10vmax; top: -45vmax; background: radial-gradient(closest-side, var(--g3), transparent); animation: orbit 19s linear infinite reverse; }
-  .backdrop b { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 18%, var(--canvas) 50%); }
   @keyframes orbit { from { transform: rotate(0) translateX(5vmax) rotate(0); } to { transform: rotate(360deg) translateX(5vmax) rotate(-360deg); } }
-  main { position: relative; max-width: 760px; margin: 0 auto; padding: calc(env(safe-area-inset-top) + 56px) 16px 48px; }
-  h1 { font: 800 clamp(34px, 7vw, 52px)/1.05 Sora, system-ui, sans-serif; letter-spacing: -0.03em; margin: 0 0 8px; }
-  .sub { color: var(--text-2); margin: 0 0 28px; }
-  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-3); margin: 0 4px 10px; }
-  .grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  a.card { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 26px; color: inherit; text-decoration: none;
-    border: 1px solid transparent; background: linear-gradient(var(--glass), var(--glass)) padding-box, linear-gradient(135deg, var(--edge), var(--hairline) 45%) border-box;
-    transition: transform 380ms cubic-bezier(0.34, 1.56, 0.64, 1); animation: reveal 600ms cubic-bezier(0.05, 0.7, 0.1, 1) both; }
-  a.card:active { transform: scale(0.985); transition-duration: 120ms; }
-  a.card:hover .go { background: linear-gradient(110deg, var(--c1), var(--c2) 55%, var(--c3)); color: var(--ink); border-color: transparent; }
-  .tile { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; flex: none; font: 800 18px Sora, sans-serif; color: var(--aqua); background: color-mix(in srgb, currentColor 12%, transparent); }
-  .meta { flex: 1; min-width: 0; }
-  .meta strong { display: block; font-size: 16px; }
-  .meta span { display: block; color: var(--text-2); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .meta small { color: var(--text-3); font-size: 12px; }
-  .go { flex: none; height: 34px; padding: 0 14px; border-radius: 999px; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 1px solid var(--hairline); transition: background 320ms; }
-  .note { color: var(--text-3); font-size: 13px; padding: 14px 4px; }
-  footer { margin-top: 36px; color: var(--text-3); font-size: 12px; text-align: center; }
-  footer a { color: var(--text-2); }
-  @keyframes reveal { from { opacity: 0; transform: translateY(14px) scale(0.96); } }
-  @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
+  h1 { font-size: clamp(30px, 7vw, 46px); font-weight: 800; letter-spacing: -0.03em; margin: 0 0 6px; }
+  p { margin: 0; color: var(--text-2); }
+  @media (prefers-reduced-motion: reduce) { .backdrop i { animation: none; } }
 </style>
 </head>
 <body>
-<div class="backdrop" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
-<main>
-  <h1>Apps</h1>
-  <p class="sub">Web apps published from <a href="https://github.com/alden000" style="color:inherit">github.com/alden000</a>.</p>
-  <div class="label">Projects</div>
-  <div class="grid" id="list"><p class="note">Loading…</p></div>
-  <footer>Every GitHub Pages project appears here automatically at <b>app.wwweeeiii.com/&lt;repo&gt;/</b></footer>
-</main>
-<script>
-  // Lists the account's public repos that have GitHub Pages enabled, straight from the GitHub API,
-  // so new projects show up without editing this page.
-  const USER = 'alden000';
-  const SELF = USER + '.github.io';
-  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
-  const list = document.getElementById('list');
-  fetch(`https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`)
-    .then((r) => (r.ok ? r.json() : Promise.reject(new Error(r.status))))
-    .then((repos) => {
-      const pages = repos.filter((r) => r.has_pages && r.name !== SELF && !r.fork);
-      if (!pages.length) return (list.innerHTML = '<p class="note">No published projects yet.</p>');
-      list.innerHTML = pages
-        .map((r, i) => {
-          // Relative link: served by this domain, which redirects to the project's own domain if it has one.
-          const url = `/${encodeURIComponent(r.name)}/`;
-          const when = new Date(r.pushed_at).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' });
-          return `<a class="card" href="${url}" style="animation-delay:${i * 65}ms">
-            <span class="tile">${esc(r.name[0].toUpperCase())}</span>
-            <span class="meta"><strong>${esc(r.name)}</strong><span>${esc(r.description || 'No description')}</span><small>Updated ${when}</small></span>
-            <span class="go">Open</span></a>`;
-        })
-        .join('');
-    })
-    .catch(() => {
-      list.innerHTML = `<p class="note">Couldn't load the project list right now. Open a project directly at <b>/&lt;repo&gt;/</b>, or browse <a href="https://github.com/${USER}?tab=repositories" style="color:inherit">the repositories</a>.</p>`;
-    });
-</script>
+  <div class="backdrop" aria-hidden="true"><i></i><i></i><i></i></div>
+  <main>
+    <h1>wwweeeiii</h1>
+    <p>Nothing to see here.</p>
+  </main>
 </body>
 </html>
